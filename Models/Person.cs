@@ -16,10 +16,11 @@ namespace Commander.Models
         [Required]
         [MaxLength(50)]
         public string Lastname { get; set; }
-        public void Copy(Person from){
+
+        //public void Copy(Person from){
             
-            this.Firstname=from.Firstname;
-            this.Lastname=from.Lastname;
-        }
+        //    this.Firstname=from.Firstname;
+        //    this.Lastname=from.Lastname;
+        //}
     }
 }

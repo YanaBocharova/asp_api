@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using Microsoft.OpenApi.Models;
+using Commander.Services;
 
 namespace Commander
 {
@@ -39,6 +40,8 @@ namespace Commander
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IPeopleRepository, SqlPeopleRepository>();
+
+            services.AddScoped<IFileService, FileService>();
 
             services.AddSwaggerGen(c=> {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Commander API", Version = "v1" });

@@ -33,11 +33,11 @@ namespace Commander.Controllers
                 return Ok("Hello filemaneger");
             }
             [HttpPost]
-            public ActionResult<byte[]> ChangeFile(IFormFile file)
+            public ActionResult ChangeFile(IFormFile file)
             {
                 if (file == null)
                 {
-                    return Ok("file == null");
+                    return BadRequest();
                 }
                 if (file.Length > 0)
                 {
@@ -52,7 +52,7 @@ namespace Commander.Controllers
 
                         Bitmap bitmap = new Bitmap(img);
 
-                        var bm = _service.Scale(bitmap, 1.5f, 1.5f);
+                        var bm = _service.Scale(bitmap, 2f, 2f);
 
                         var pathSaved = _envirnment.WebRootPath + "Changed" + file.FileName;
 
@@ -60,7 +60,7 @@ namespace Commander.Controllers
 
                         byte[] imageArrayByte = System.IO.File.ReadAllBytes(pathSaved);
 
-                        return Ok(imageArrayByte);
+                        return File(imageArrayByte,"image/png");
                     }
                 }
                 else
